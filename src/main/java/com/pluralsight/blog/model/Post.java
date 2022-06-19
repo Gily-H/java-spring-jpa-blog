@@ -5,13 +5,22 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+// JPA (Java Persistence API) Entity represents a database table
+@Entity // handles data like an ORM - requires @Id
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String lead;
+
+    @Column(length=1000000) // message of blog post will be long
+    @Lob // store data as binary
     private String body;
     private String author;
+
+    @Temporal(TemporalType.DATE) // informs database to read this field as date time
     private Date date;
 
     public Post() {
